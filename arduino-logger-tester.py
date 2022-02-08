@@ -1,9 +1,14 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import sys
 import os
+
+TIMESTAMP_COLUMN_LABEL = 'TimeStamp'
+EDA_COLUMN_LABEL = 'EDA'
+IBI_COLUMN_LABEL = 'IBI'
+PRESSURE_COLUMN_LABEL = 'Pressure'
+MILLIS_COLUMN_LABEL = 'Millis'
 
 
 def zero_to_nan(values):
@@ -38,27 +43,27 @@ if not os.path.exists(file):
 
 # reads the csv file
 cols = list(pd.read_csv(file, nrows=1, sep=';', index_col=False, on_bad_lines='skip'))
-data = pd.read_csv(file, sep=';', index_col=False, on_bad_lines='skip', usecols =[i for i in cols if i != 'TimeStamp'])
+data = pd.read_csv(file, sep=';', index_col=False, on_bad_lines='skip', usecols =[i for i in cols if i != TIMESTAMP_COLUMN_LABEL])
 
 fig = gridspec.GridSpec(2, 2, height_ratios=[1,1])
 plt.subplots_adjust(wspace=0.5, hspace=0.5)
 millis = data['Millis'].to_numpy()
 
 # displays IBI plot
-IBI = data['IBI'].astype(float).to_numpy()
+IBI = data[IBI_COLUMN_LABEL].astype(float).to_numpy()
 # removes extreme values
 IBI[IBI > 3000] = 3000
 IBI = zero_to_nan(IBI)
-generator_scatter_plot(fig[0], "IBI", "Millis", millis, "IBI", IBI)
+generator_scatter_plot(fig[0], IBI_COLUMN_LABEL, MILLIS_COLUMN_LABEL, millis, IBI_COLUMN_LABEL, IBI)
 
 # displays EDA plot
-EDA = data['EDA'].to_numpy()
-generate_plot(fig[1], "EDA", "Millis", millis, "EDA", EDA)
+EDA = data[EDA_COLUMN_LABEL].to_numpy()
+generate_plot(fig[1], EDA_COLUMN_LABEL, MILLIS_COLUMN_LABEL, millis, EDA_COLUMN_LABEL, EDA)
 
 # displays pressure plot
-pressure = data['Pressure'].to_numpy()
+pressure = data[PRESSURE_COLUMN_LABEL].to_numpy()
 pressure = zero_to_nan(pressure)
-generator_scatter_plot(fig[2], "Pressure", "Millis", millis, "Pressure", pressure)
+generator_scatter_plot(fig[2], PRESSURE_COLUMN_LABEL, MILLIS_COLUMN_LABEL, millis, PRESSURE_COLUMN_LABEL, pressure)
 
 plt.show()
 
