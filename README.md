@@ -3,7 +3,7 @@
 
 ## What is it
 
-The Arduino Logger Tester is a small python program that can be used to plot easily the IBI, EDA and pressure collected by the  [Arduino Logger](https://github.com/med-material/ArduinoLogger) from a CSV file.
+The Arduino Logger Tester is a small python program that can be used to easily plot the IBI, EDA and pressure collected by the  [Arduino Logger](https://github.com/med-material/ArduinoLogger) from a CSV file.
 
 ## How to use
 
