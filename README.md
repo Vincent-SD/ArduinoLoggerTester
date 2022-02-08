@@ -15,7 +15,7 @@ The programs uses python and requires:
 - sys
 - os
 
-You may need to install those modules. See how [here](https://docs.python.org/3/installing/index.html#basic-usage)
+You may need to install those modules. See how [here](https://docs.python.org/3/installing/index.html#basic-usage).
 
 ### Usage
 
