@@ -9,7 +9,7 @@ The Arduino Logger Tester is a small python program that can be used to easily p
 
 ### Imports
 
-The programs uses python and requires:
+The program uses python and requires:
 - pandas
 - matplotlib
 - sys
